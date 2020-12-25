@@ -17,6 +17,7 @@ import java.net.URI;
 import com.rest.webservices.restfulwebservices.bean.*;
 
 import com.rest.webservices.restfulwebservices.dao.UserDaoService;
+import com.rest.webservices.restfulwebservices.exceptions.UserNotFoundException;
 
 @RestController
 public class UserResource {
@@ -30,7 +31,11 @@ public class UserResource {
 	
 	@GetMapping("/users/{id}")
 	public User retrieveAUser(@PathVariable Integer id){
-		return userDaoService.findOne(id);
+		User user = userDaoService.findOne(id);
+		if(user == null) {
+			throw new UserNotFoundException("User with id "+id+" not found");
+		}
+		return user;
 	}
 	
 	@PostMapping("/users")
