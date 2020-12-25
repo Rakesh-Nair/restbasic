@@ -24,7 +24,7 @@ public class UserDaoService {
 	
 	public User saveUser(User user) {
 		if(user.getId() == null) {
-			user.setId(users.size());
+			user.setId(users.size()+1);
 		}
 		users.add(user);
 		return user;	
@@ -38,4 +38,5 @@ public class UserDaoService {
 		}
 		return null;
 	}
+	
 }
