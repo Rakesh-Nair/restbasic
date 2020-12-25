@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import com.rest.webservices.restfulwebservices.bean.User;
 
 @Component
-public class UserDaoService {
+public class UserService {
 
 	private static List<User> users = new ArrayList();
 	static {

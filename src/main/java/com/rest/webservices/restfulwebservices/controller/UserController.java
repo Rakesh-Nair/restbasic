@@ -16,13 +16,13 @@ import java.net.URI;
 
 import com.rest.webservices.restfulwebservices.bean.*;
 
-import com.rest.webservices.restfulwebservices.dao.UserDaoService;
+import com.rest.webservices.restfulwebservices.dao.UserService;
 import com.rest.webservices.restfulwebservices.exceptions.UserNotFoundException;
 
 @RestController
-public class UserResource {
+public class UserController {
 	@Autowired
-	private UserDaoService userDaoService;
+	private UserService userDaoService;
 	
 	@GetMapping("/users")
 	public List<User> retrieveAllUsers(){
