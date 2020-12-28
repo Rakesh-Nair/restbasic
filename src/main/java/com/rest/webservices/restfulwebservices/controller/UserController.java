@@ -6,6 +6,8 @@ import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import java.net.URI;
 
 import com.rest.webservices.restfulwebservices.bean.*;
@@ -32,12 +36,20 @@ public class UserController {
 	}
 	
 	@GetMapping("/users/{id}")
-	public User retrieveAUser(@PathVariable Integer id){
+	public EntityModel<User> retrieveAUser(@PathVariable Integer id){
 		User user = userService.findOne(id);
 		if(user == null) {
 			throw new UserNotFoundException("User with id "+id+" not found");
 		}
-		return user;
+		EntityModel<User> resource = EntityModel.of(user);
+		WebMvcLinkBuilder linkTo = 
+				linkTo(methodOn(this.getClass()).retrieveAllUsers());
+		
+		resource.add(linkTo.withRel("all-users"));
+		
+		//HATEOAS
+		
+		return resource;
 	}
 	
 	@PostMapping("/users")
@@ -54,6 +66,5 @@ public class UserController {
 		if(user == null) {
 			throw new UserNotFoundException("User with id "+id+" not found");
 		}
-		
 	}
 }
