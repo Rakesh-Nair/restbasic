@@ -8,8 +8,6 @@ import org.springframework.stereotype.Component;
 
 import com.rest.webservices.restfulwebservices.bean.User;
 
-import javassist.bytecode.Descriptor.Iterator;
-
 @Component
 public class UserService {
 
