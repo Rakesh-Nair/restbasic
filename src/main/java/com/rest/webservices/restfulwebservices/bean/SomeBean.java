@@ -1,13 +1,13 @@
 package com.rest.webservices.restfulwebservices.bean;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonFilter;
 
-@JsonIgnoreProperties(value = { "prop1" })
+//@JsonIgnoreProperties(value = { "prop1" })
+@JsonFilter("SomeBeanFilter")
 public class SomeBean {
 	private String prop1;
 	private String prop2;
-	@JsonIgnore
+	// @JsonIgnore
 	private String prop3;
 
 	public SomeBean(String prop1, String prop2, String prop3) {
