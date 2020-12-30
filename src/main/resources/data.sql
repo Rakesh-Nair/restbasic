@@ -1,0 +1,10 @@
+insert into user values(1,sysdate(), 'Luffy');
+insert into user values(2,sysdate(), 'Zoro');
+insert into user values(3,sysdate(), 'Nami');
+insert into user values(4,sysdate(), 'Usopp');
+insert into user values(5,sysdate(), 'Sanji');
+insert into user values(6,sysdate(), 'Chopper');
+insert into user values(7,sysdate(), 'Robin');
+insert into user values(8,sysdate(), 'Franky');
+insert into user values(9,sysdate(), 'Brook');
+insert into user values(10,sysdate(), 'Jinbe');
