@@ -23,13 +23,11 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.rest.webservices.restfulwebservices.bean.User;
 import com.rest.webservices.restfulwebservices.dao.UserRepository;
-import com.rest.webservices.restfulwebservices.dao.UserService;
 import com.rest.webservices.restfulwebservices.exceptions.UserNotFoundException;
 
 @RestController
 public class UserJPAController {
-	@Autowired
-	private UserService userService;
+
 	@Autowired
 	private UserRepository userRepository;
 
@@ -56,7 +54,7 @@ public class UserJPAController {
 
 	@PostMapping("/jpa/users")
 	public ResponseEntity<User> addUser(@Valid @RequestBody User user) {
-		User savedUser = userService.saveUser(user);
+		User savedUser = userRepository.save(user);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId())
 				.toUri();
 
@@ -65,9 +63,6 @@ public class UserJPAController {
 
 	@DeleteMapping("/jpa/users/{id}")
 	public void removeAUser(@PathVariable Integer id) {
-		User user = userService.deleteById(id);
-		if (user == null) {
-			throw new UserNotFoundException("User with id " + id + " not found");
-		}
+		userRepository.deleteById(id);
 	}
 }
