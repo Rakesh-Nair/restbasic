@@ -8,3 +8,6 @@ insert into user values(10007,sysdate(), 'Robin');
 insert into user values(10008,sysdate(), 'Franky');
 insert into user values(10009,sysdate(), 'Brook');
 insert into user values(20000,sysdate(), 'Jinbe');
+
+insert into post values(11001,'My First Post',10001);
+insert into post values(11002,'My Second Post',10001);
